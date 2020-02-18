@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Guess what I'm thinking</title>
+        <meta charset="UTF-8">
+        <link rel="stylesheet" type="text/css" href="/psychic-game/asset/css/style.css">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    </head>
+
+    <body>
+        <img src="asset/images/psychic.jpg" width="300px" height="300px">
+        <h2>Psychic Game</h2>
+           
+        <div id="game">
+            <p>Guess What Letter I'm Thinking Of</p>
+            <p id="win">Wins:</p>
+            <p id="lost">Losses:</p>
+            <p id="Guesses Left">Guesses Left:</p>
+            <p id="yourguess">Your Guesses so far:</p>
+        </div>
+    
+    <!-- 
+        Set Wins and Losses to be 0
+        Set maximum guesses to be 9
+        Set computer guess to be random 
+        Capture the letter choice user make using onkeyup 
+        Compare the choice between user and computer
+        If it matches, user wins
+        Link the js to html using document.querySelector(id).innerHTML
+     -->
+
+    <script type="text/javascript">
+
+    // Set Wins Losses to be 0 and Guesses to be 9
+    var Wins = 0;
+    var Losses = 0;
+    var guessesLeft =9;
+    var guessChoice= [];
+   
+    //Set up a letter array for computer 
+    var computerChoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","e","w","x","z",];
+        
+        
+    //Capture the letter choice user make using onkeyup 
+    document.onkeyup = function(event) {
+        var userGuess = event.key;
+       
+        //Set computer guess to be random once the user press and release the key
+        var randomGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
+            
+        var guessChoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","e","w","x","z",];
+
+            if (guessChoice.indexOf(userGuess) > -1) {
+       
+            //Set up conditions, if userchoice=computer, one increment in wins. If userchoice is different, user have 8 more times to choose before being lost
+                if (userGuess === randomGuess) {
+                Wins ++;
+                guessesLeft = 9;
+                guessChoice=[];}
+                
+
+                if (userGuess != randomGuess) {
+                guessesLeft --;
+                guessChoice.push(userGuess);}  
+                
+        
+                if (guessesLeft === 0) {
+                guessesLeft=9;
+                Losses++;
+                guessChoice=[]; }
+
+                var present = 
+			    "<p> Guess What Letter I'm thinking of!</p>" +
+			    "<p> Wins: " + Wins + "</p>" +
+			    "<p> Losses: " + Losses + "</p>" +
+			    "<p> Guesses Left: " + guessesLeft + "</p>" +
+			    "<p> Your Guesses so far: " + guessChoice.join(", ") + "</p>";
+
+			    document.querySelector("#game").innerHTML = present;
+
+            }
+            
+        }
+        
+    
+    </script>
+
+
+    </body>
+</html>
