@@ -48,9 +48,9 @@
         //Set computer guess to be random once the user press and release the key
         var randomGuess = computerChoice[Math.floor(Math.random()*computerChoice.length)];
             
-        var guessChoice = ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","e","w","x","z",];
+        var guess= ["a","b","c","d","e","f","g","h","i","j","k","l","m","n","o","p","q","r","s","t","u","v","e","w","x","z",];
 
-            if (guessChoice.indexOf(userGuess) > -1) {
+            if (guess.indexOf(userGuess) > -1) {
        
             //Set up conditions, if userchoice=computer, one increment in wins. If userchoice is different, user have 8 more times to choose before being lost
                 if (userGuess === randomGuess) {
